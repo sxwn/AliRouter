@@ -4,6 +4,7 @@ package com.xiaowei.login;
  */
 import com.xiaowei.arouter.ARouter;
 import com.xiaowei.arouter.IRouter;
+
 public class ActivityUtil implements IRouter {
     @Override
     public void putActivity() {

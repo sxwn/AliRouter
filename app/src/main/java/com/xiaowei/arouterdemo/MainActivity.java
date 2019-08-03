@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
 import com.xiaowei.annotation.BindPath;
 import com.xiaowei.arouter.ARouter;
 
@@ -17,11 +19,10 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.go).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(MainActivity.this,"点击了",Toast.LENGTH_LONG).show();
                 ARouter.getInstance().jumpActivity("login/login",null);
             }
         });
     }
-    public void jump(View view){
-        ARouter.getInstance().jumpActivity("login/login",null);
-    }
+
 }

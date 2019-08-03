@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:text="跳转到登录Activity"
         android:layout_centerInParent="true"
-        android:onClick="jump"
        />
 
 </RelativeLayout>

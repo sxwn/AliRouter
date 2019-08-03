@@ -2,7 +2,6 @@ package com.xiaowei.annotation_complier;
 
 import com.google.auto.service.AutoService;
 import com.xiaowei.annotation.BindPath;
-
 import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
@@ -13,6 +12,7 @@ import java.util.Set;
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
@@ -22,7 +22,7 @@ import javax.tools.JavaFileObject;
 /**
  * 注解处理器
  */
-@AutoService(Process.class)//注册我们的注解处理器
+@AutoService(Processor.class)//注册我们的注解处理器
 public class AnnotationCompiler extends AbstractProcessor {
 
     //生成文件的对象
@@ -72,6 +72,7 @@ public class AnnotationCompiler extends AbstractProcessor {
             //获取到key
             String key = typeElement.getAnnotation(BindPath.class).value();
             //获取到Activity的类对象的名字
+//            typeElement.getSimpleName() 不带包名
             String activityName = typeElement.getQualifiedName().toString();
             map.put(key,activityName);
         }
@@ -85,10 +86,11 @@ public class AnnotationCompiler extends AbstractProcessor {
                 JavaFileObject sourceFile = filer.createSourceFile("com.xiaowei.util." + utilName);
                 System.out.println("namenmae:"+sourceFile);
                 write = sourceFile.openWriter();
-                write.write("package com.xiaowei.login;\n");
+                write.write("package com.xiaowei.util;\n");
                 write.write("import com.xiaowei.arouter.ARouter;\n" +
                         "import com.xiaowei.arouter.IRouter;\n" +
-                        "public class"+ utilName+"implements IRouter {\n" +
+                        "\n"+
+                        "public class "+ utilName+" implements IRouter {\n" +
                         "    @Override\n" +
                         "    public void putActivity() {");
                 Iterator<String> iterator = map.keySet().iterator();
