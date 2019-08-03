@@ -19,6 +19,7 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.tools.JavaFileObject;
 
+
 /**
  * 注解处理器
  */
@@ -41,6 +42,13 @@ public class AnnotationCompiler extends AbstractProcessor {
     @Override
     public Set<String> getSupportedAnnotationTypes() {
         Set<String> types = new HashSet<>();
+        /**
+         * 拿到我们注解处理器名字
+         * 1、getCanonicalName() 是获取所传类从java
+         *  语言规范定义的格式输出。
+         * 2、getName() 是返回实体类型名称
+         * 3、getSimpleName() 返回从源代码中返回实例的名称。
+         */
         types.add(BindPath.class.getCanonicalName());
         return types;
     }
@@ -97,7 +105,7 @@ public class AnnotationCompiler extends AbstractProcessor {
                 while (iterator.hasNext()){
                     String key = iterator.next();
                     String activityName = map.get(key);
-                    write.write("ARouter.getInstance().putActivity(\""+key+"\","+activityName+".class);\n");
+                    write.write(" ARouter.getInstance().putActivity(\""+key+"\", "+activityName+".class);\n");
                 }
                 write.write("}\n}\n");
             } catch (Exception e) {
