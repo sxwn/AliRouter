@@ -83,6 +83,7 @@ public class AnnotationCompiler extends AbstractProcessor {
             //创建文件
             try {
                 JavaFileObject sourceFile = filer.createSourceFile("com.xiaowei.util." + utilName);
+                System.out.println("namenmae:"+sourceFile);
                 write = sourceFile.openWriter();
                 write.write("package com.xiaowei.login;\n");
                 write.write("import com.xiaowei.arouter.ARouter;\n" +
