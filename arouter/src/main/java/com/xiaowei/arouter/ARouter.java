@@ -108,7 +108,6 @@ public class ARouter {
         Intent intent = new Intent(context,aClass);
         if (bundle!=null){
             intent.putExtra("bundle",bundle);
-//            intent.putExtras(bundle);
         }
         /**
          * 这里这行必须加一下
